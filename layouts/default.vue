@@ -1,6 +1,6 @@
 <template>
   <section class="gird">
-    <aside>menu</aside>
+    <LayoutSidebar />
     <div>
         <slot />
     </div>
