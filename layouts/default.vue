@@ -1,5 +1,5 @@
 <template>
-  <section class="gird">
+  <section class="grid">
     <LayoutSidebar />
     <div>
         <slot />
