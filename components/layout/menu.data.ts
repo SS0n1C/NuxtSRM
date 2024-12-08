@@ -1,9 +1,5 @@
-export interface ImenuItem{
-    name:string,
-    url:string,
-    icon:string,
-}
-export const MENU_DATA: ImenuItem[] = [{
+
+export const MENU_DATA = [{
     icon: 'radix-icons:dashboard',
     name: "Home",
     url:"/"

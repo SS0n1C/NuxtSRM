@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script  setup>
 import {MENU_DATA} from "./menu.data"
 </script>
 
