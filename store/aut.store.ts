@@ -10,7 +10,7 @@ const defaultUser: {user : IautStore} =  {
         status: false,
     }
 }
-export const useAutStore  = defineStore("auth", {
+export const useAutStore  = defineStore("isAuth", {
     state: () => defaultUser,
 
     getters:{
@@ -26,7 +26,7 @@ export const useAutStore  = defineStore("auth", {
     },
 
 })
-export const UseLoadingStore = defineStore("load",{
+export const UseLoadingStore = defineStore("isLoading",{
     state: () => ({
         isLoading: true,
      }),

@@ -8,4 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@pinia/nuxt',
   ],
+  pinia:{
+    storesDirs:['./store/**'],
+  }
 })
