@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { v4 as uuidv4 } from 'uuid';
 useSeoMeta({
     title: "Login | SRM system"
 })
@@ -8,9 +9,8 @@ const nameRef = ref("")
 const isLoadingStore = UseLoadingStore()
 const authStore = useAutStore()
 const router = useRouter()
-console.log(router)
 
-const login = async () =>{
+const login = async() =>{
     isLoadingStore.set(true)
     await account.createEmailPasswordSession(emailRef.value,passwordRef.value)
     const response = await account.get()
@@ -24,9 +24,13 @@ const login = async () =>{
     emailRef.value = "",
     passwordRef.value = "",
     nameRef.value = ""
-    
+
     await router.push("/")
     isLoadingStore.set(false)
+}
+const regist = async() =>{
+    await account.create(uuidv4(),emailRef.value,passwordRef.value,nameRef.value)
+    await login()
 }
 </script>
 
@@ -45,8 +49,8 @@ const login = async () =>{
                   placeholder="name"
                   v-model="nameRef">
               <div class="flex items-center justify-center gap-x-10">
-                  <button type="button" class="but">login</button>
-                  <button type="button" class="but">registration</button>
+                  <button type="button" class="but" @click="login">login</button>
+                  <button type="button" class="but" @click="regist">registration</button>
               </div>
           </form>
       </div>
