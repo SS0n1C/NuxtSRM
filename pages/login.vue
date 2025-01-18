@@ -12,8 +12,11 @@ const router = useRouter()
 
 const login = async() =>{
     isLoadingStore.set(true)
+    try{
     await account.createEmailPasswordSession(emailRef.value,passwordRef.value)
+    console.log(account.get())
     const response = await account.get()
+    console.log(response)
     if(response){
         authStore.set({
             email:response.email,
@@ -24,18 +27,27 @@ const login = async() =>{
     emailRef.value = "",
     passwordRef.value = "",
     nameRef.value = ""
-
     await router.push("/")
     isLoadingStore.set(false)
+} catch (e){
+    console.log(e)
+    alert(e)
+} finally{
+    isLoadingStore.set(false)
+}
 }
 const regist = async() =>{
+    try{
     await account.create(uuidv4(),emailRef.value,passwordRef.value,nameRef.value)
     await login()
+    } catch (e){
+        alert(e)
+    }
 }
 </script>
 
 .<template>
-    <section class="flex items-center justify-center min-h-screen w-full bg-[#0c4a6e]">
+    <section class="flex items-center justify-center min-h-screen w-full bg-[#111827]">
       <div class="bg-white flex items-center flex-col min-w-96 py-2 min-h-72 rounded-3xl" >
           <div><h3 class="text-center text-xl uppercase font-semibold underline mb-5">login</h3></div>
           <form action="" class="grow flex">
@@ -61,13 +73,13 @@ const regist = async() =>{
     </section>
   </template>
   
-<style scoped>
+<style scoped lang="scss">
 input{
     display: block;
     margin-bottom: 10px;
     border-radius: 5px;
     min-width: 100%;
-    background-color: brown;
+    background-color: rgb(49, 49, 251);
     padding: 3px 10px;
 }
 .but{
